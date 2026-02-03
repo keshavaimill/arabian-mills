@@ -2,9 +2,9 @@
  * Real data loaders for Finished Goods - imports CSV files directly
  */
 
-import salesHistoryRaw from "@/Finished_goods_Forecasting/data/sales_history.csv?raw";
-import productionPlanRaw from "@/Finished_goods_Forecasting/data/production_plan.csv?raw";
-import inventoryRaw from "@/Finished_goods_Forecasting/data/finished_goods_inventory.csv?raw";
+import salesHistoryRaw from "@/data/sales_history.csv?raw";
+import productionPlanRaw from "@/data/production_plan.csv?raw";
+import inventoryRaw from "@/data/finished_goods_inventory.csv?raw";
 import type { 
   SalesHistoryRecord, 
   ProductionPlanRecord, 

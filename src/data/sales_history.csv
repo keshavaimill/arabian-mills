@@ -1,0 +1,6 @@
+sales_id,date,sku_id,region,distributor_id,quantity_sold,price_per_unit,promotion_flag
+SH-001,2025-01-15,FG-001,Riyadh,D-101,120,45.50,false
+SH-002,2025-01-15,FG-002,Jeddah,D-102,85,32.00,true
+SH-003,2025-01-16,FG-001,Dammam,D-103,95,45.50,false
+SH-004,2025-01-16,FG-003,Riyadh,D-101,200,28.75,true
+SH-005,2025-01-17,FG-002,Riyadh,D-101,150,32.00,false

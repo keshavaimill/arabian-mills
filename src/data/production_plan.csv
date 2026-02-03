@@ -1,0 +1,6 @@
+plan_id,sku_id,planned_date,planned_quantity,actual_produced_quantity,machine_id
+PP-001,FG-001,2025-01-15,1000,980,M-01
+PP-002,FG-002,2025-01-15,800,810,M-02
+PP-003,FG-003,2025-01-16,1200,1185,M-01
+PP-004,FG-001,2025-01-17,1000,1002,M-01
+PP-005,FG-002,2025-01-17,800,795,M-02

@@ -1,4 +1,4 @@
-import forecastResults from "@/Finished_goods_Forecasting/forecast_results.json";
+import forecastResults from "@/data/forecast_results.json";
 import type { FinishedGoodsForecast } from "./finished-goods-kpis";
 
 export const getFinishedGoodsForecasts = (): FinishedGoodsForecast[] => {
