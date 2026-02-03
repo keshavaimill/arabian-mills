@@ -14,7 +14,8 @@ A real-time inventory management and demand forecasting dashboard built for Saud
 - **Calculate financial impact** of lost sales, emergency procurement, and write-off risks
 
 The system integrates a Python-based AutoARIMA forecasting engine with a modern React frontend to deliver actionable insights in real-time.
-
+      
+      
 ---
 
 ## 🏗️ Architecture
