@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Minimal Saudi operations design system */
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 220 32% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 32% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 32% 12%;
+
+    --primary: 16 84% 54%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 38% 96%;
+    --secondary-foreground: 220 32% 12%;
+
+    --muted: 215 20% 92%;
+    --muted-foreground: 215 13% 46%;
+
+    --accent: 222 85% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 210 22% 88%;
+    --input: 210 22% 88%;
+    --ring: 220 70% 50%;
+
+    --radius: 0.85rem;
+
+    --saudi-green: 152 100% 21%;
+    --vision-gold: 45 93% 58%;
+    --success: 151 70% 35%;
+    --warning: 35 90% 52%;
+    --danger: 0 84% 60%;
+    --info: 217 91% 60%;
+
+    --alert-critical-bg: 0 100% 98%;
+    --alert-warning-bg: 38 100% 98%;
+    --alert-success-bg: 142 64% 96%;
+
+    --gradient-orange: linear-gradient(135deg, hsl(16 84% 54%) 0%, hsl(10 80% 50%) 100%);
+    --gradient-light: linear-gradient(135deg, hsl(0 0% 100%) 0%, hsl(210 38% 96%) 100%);
+    --gradient-hero: radial-gradient(circle at top, hsl(0 0% 100%) 0%, hsl(210 40% 97%) 55%, hsl(210 28% 92%) 100%);
+
+    --shadow-glow: 0 15px 40px hsl(16 84% 54% / 0.25);
+    --shadow-card: 0 10px 30px hsl(220 32% 12% / 0.06);
+    --shadow-elevated: 0 20px 60px hsl(220 32% 12% / 0.12);
+    --shadow-hover: 0 25px 80px hsl(220 32% 12% / 0.16);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  /* Smooth transitions for interactive elements */
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  [role="button"] {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  /* Smooth transitions for cards and containers */
+  [class*="section-shell"],
+  [class*="glass-card"],
+  [class*="rounded"] {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform, opacity;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Inter', 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: radial-gradient(circle at top, hsl(var(--background)) 0%, hsl(210 28% 94%) 50%, hsl(210 24% 90%) 100%);
+    @apply text-foreground antialiased;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Mobile-specific improvements */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+    }
+    
+    /* Improve touch targets */
+    button, a, [role="button"] {
+      min-height: 44px;
+      min-width: 44px;
+    }
+    
+    /* Better scrolling on mobile */
+    * {
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+
+  /* Smooth scrolling for anchor links */
+  html {
+    scroll-padding-top: 6rem;
+  }
+
+  ::selection {
+    background: hsla(var(--primary) / 0.2);
+  }
+
+  /* RTL support */
+  html[dir="rtl"] * {
+    direction: rtl;
+    text-align: right;
+  }
+
+  /* Smooth image loading */
+  img {
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+  }
+
+  img[loading="lazy"] {
+    opacity: 0;
+  }
+
+  img[loading="lazy"].loaded {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    @apply border border-border bg-card shadow-card;
+    backdrop-filter: blur(16px);
+  }
+
+  .glass-panel {
+    @apply border border-border/70 bg-white/70 shadow-card;
+    backdrop-filter: blur(20px);
+  }
+
+  .gradient-orange {
+    background: var(--gradient-orange);
+  }
+
+  .gradient-light {
+    background: var(--gradient-light);
+  }
+
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  .shadow-hover {
+    box-shadow: var(--shadow-hover);
+  }
+
+  .hover-lift {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: var(--shadow-hover);
+  }
+
+  .hover-glow {
+    transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: box-shadow;
+  }
+
+  .hover-glow:hover {
+    box-shadow: var(--shadow-glow);
+  }
+
+  /* Smooth scale on hover */
+  .hover-scale {
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02) translateZ(0);
+  }
+
+  /* Smooth fade-in for sections */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 400ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 400ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Smooth slide-in from sides */
+  .slide-in-left {
+    opacity: 0;
+    transform: translateX(-20px);
+    transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .slide-in-left.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide-in-right {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: opacity 350ms cubic-bezier(0.4, 0, 0.2, 1),
+                transform 350ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, transform;
+  }
+
+  .slide-in-right.visible {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .section-shell {
+    @apply rounded-2xl sm:rounded-[28px] lg:rounded-[32px] border border-border/70 bg-card/90 shadow-card;
+    backdrop-filter: blur(24px);
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .section-shell:hover {
+    transform: translateY(-2px) translateZ(0);
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Mobile: reduce hover effects */
+  @media (max-width: 640px) {
+    .section-shell:hover {
+      transform: translateZ(0);
+    }
+    
+    .hover-lift:hover {
+      transform: translateZ(0);
+    }
+  }
+
+  .pill {
+    @apply inline-flex items-center gap-2 rounded-full border border-border/70 bg-white/70 px-4 py-1 text-[11px] font-semibold uppercase tracking-[0.2em];
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .pill:hover {
+    transform: scale(1.05) translateZ(0);
+  }
+
+  .surface-muted {
+    @apply rounded-2xl border border-border/70 bg-white/70;
+    transition: transform 200ms cubic-bezier(0.4, 0, 0.2, 1),
+                box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+    transform: translateZ(0);
+  }
+
+  .surface-muted:hover {
+    transform: translateY(-1px) translateZ(0);
+    box-shadow: var(--shadow-card);
+  }
+
+  /* Smooth button interactions */
+  button {
+    transform: translateZ(0);
+  }
+
+  button:active {
+    transform: scale(0.98) translateZ(0);
+  }
+
+  /* Smooth table row interactions */
+  tr {
+    transition: transform 150ms cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: transform;
+  }
+
+  /* Responsive typography with clamp */
+  .text-responsive {
+    font-size: clamp(0.875rem, 0.8rem + 0.375vw, 1rem);
+  }
+
+  .text-responsive-lg {
+    font-size: clamp(1.125rem, 1rem + 0.625vw, 1.5rem);
+  }
+
+  .text-responsive-xl {
+    font-size: clamp(1.5rem, 1.25rem + 1.25vw, 2.25rem);
+  }
+
+  .text-responsive-2xl {
+    font-size: clamp(1.875rem, 1.5rem + 1.875vw, 3rem);
+  }
+
+  .text-responsive-3xl {
+    font-size: clamp(2.25rem, 1.75rem + 2.5vw, 4rem);
+  }
+}
