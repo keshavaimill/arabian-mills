@@ -9,6 +9,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { login } from "@/lib/auth";
+import logo from "@/assets/arabian-mills-logo.svg";
 
 const LoginSchema = z.object({
   identifier: z
@@ -60,7 +61,16 @@ const Login = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-white to-gray-50 px-4 py-10 sm:py-16">
       <div className="mx-auto w-full max-w-md">
-        <div className="mb-6 sm:mb-8 text-center">
+        <div className="mb-4 sm:mb-6 flex justify-center">
+          <img
+            src={logo}
+            alt="Arabian Mills Logo"
+            className="h-14 sm:h-16 w-auto"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div className="mb-6 sm:mb-8 text-center space-y-2">
           <p className="text-[10px] sm:text-xs uppercase tracking-[0.4em] text-muted-foreground">Arabian Mills</p>
           <h1 className="mt-2 text-2xl sm:text-3xl font-semibold tracking-tight">Operations Command Center</h1>
           <p className="mt-2 text-sm text-muted-foreground">Sign in to continue</p>
