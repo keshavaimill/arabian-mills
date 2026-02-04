@@ -19,6 +19,7 @@ import {
 import heroBackground from '@/assets/hero-bg.jpg';
 import { useTranslation } from 'react-i18next';
 import { useLocale } from '@/hooks/use-locale';
+import { getCurrentUser } from '@/lib/auth';
 import {
   computeKingdomWideStockoutRiskIndex,
   computeMAPE,
@@ -32,6 +33,7 @@ import { getInventoryForecastRecords } from '@/lib/inventory-data';
 const Index = () => {
   const { t } = useTranslation();
   const { isArabic, localized } = useLocale();
+  const session = getCurrentUser();
 
   const materials = getInventoryForecastRecords();
 
@@ -255,6 +257,13 @@ const Index = () => {
                   <span>{localized('Vision 2030', 'رؤية ٢٠٣٠')}</span>
                   <span className="text-saudi-green font-bold">{localized('AI Ready', 'جاهز بالذكاء الاصطناعي')}</span>
                 </div>
+                {session && (
+                  <div className="rounded-full bg-white/70 border border-border/60 px-3 py-1 text-[10px] sm:text-xs flex items-center gap-2 shadow-card">
+                    <span className="font-semibold">{localized('Welcome', 'مرحباً')}</span>
+                    <span className="text-foreground">{session.username}</span>
+                    <span className="text-muted-foreground capitalize">({session.role})</span>
+                  </div>
+                )}
               </div>
               <div>
                 <p className="text-xs sm:text-sm uppercase tracking-[0.2em] sm:tracking-[0.3em] text-muted-foreground mb-3 sm:mb-4">

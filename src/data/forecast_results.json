@@ -1,0 +1,38 @@
+[
+  {
+    "sku_id": "FG-001",
+    "current_stock": 2500,
+    "forecast_7d": 840,
+    "forecast_14d": 1680,
+    "forecast_30d": 3600,
+    "supply_30d": 2500,
+    "balance_7d": 1660,
+    "balance_14d": 820,
+    "balance_30d": -1100,
+    "status": "OK"
+  },
+  {
+    "sku_id": "FG-002",
+    "current_stock": 1800,
+    "forecast_7d": 595,
+    "forecast_14d": 1190,
+    "forecast_30d": 2550,
+    "supply_30d": 1800,
+    "balance_7d": 1205,
+    "balance_14d": 610,
+    "balance_30d": -750,
+    "status": "OK"
+  },
+  {
+    "sku_id": "FG-003",
+    "current_stock": 3200,
+    "forecast_7d": 1120,
+    "forecast_14d": 2240,
+    "forecast_30d": 4800,
+    "supply_30d": 3200,
+    "balance_7d": 2080,
+    "balance_14d": 960,
+    "balance_30d": -1600,
+    "status": "CRITICAL: Stockout in 30d"
+  }
+]

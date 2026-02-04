@@ -1,0 +1,4 @@
+sku_id,sku_name,category,current_stock_units,production_batch_id,last_produced_date
+FG-001,Premium Flour 1kg,Bakery,2500,B-2025-001,2025-01-17
+FG-002,Whole Wheat 500g,Bakery,1800,B-2025-002,2025-01-17
+FG-003,Pasta 400g,Pasta,3200,B-2025-003,2025-01-16
