@@ -1,14 +1,18 @@
 import { useMemo, useState } from 'react';
-import { Clock, Menu, X } from 'lucide-react';
+import { Clock, Menu, X, LogOut } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { motion, AnimatePresence } from 'framer-motion';
 import { NavLink } from './NavLink';
 import { LanguageSwitcher } from './LanguageSwitcher';
 import { useLocale } from '@/hooks/use-locale';
+import { getCurrentUser, logout } from '@/lib/auth';
+import { useNavigate } from 'react-router-dom';
 
 export const Navigation = () => {
   const { localized } = useLocale();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const session = getCurrentUser();
 
   const navItems = [
     { label: localized('Executive', 'التنفيذي'), to: '/' },
@@ -71,9 +75,25 @@ export const Navigation = () => {
               <LanguageSwitcher />
             </div>
 
-            <Button className="hidden sm:inline-flex rounded-full bg-foreground text-white px-4 sm:px-6 text-xs sm:text-sm">
-              {localized('Talk to Us', 'تواصل معنا')}
-            </Button>
+            {session && (
+              <div className="hidden sm:flex items-center gap-2 text-xs sm:text-sm">
+                <div className="rounded-full border border-border/70 bg-white/70 px-3 py-1 leading-tight">
+                  <span className="font-semibold">{session.username}</span>
+                  <span className="ml-2 text-muted-foreground capitalize">{session.role}</span>
+                </div>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="h-9 w-9 sm:h-10 sm:w-10"
+                  onClick={() => {
+                    logout();
+                    navigate('/login', { replace: true });
+                  }}
+                >
+                  <LogOut className="w-4 h-4" />
+                </Button>
+              </div>
+            )}
 
             <Button 
               variant="ghost" 
@@ -102,7 +122,23 @@ export const Navigation = () => {
                     <Clock className="w-4 h-4" />
                     <span>AST {currentTime}</span>
                   </div>
-                  <LanguageSwitcher />
+                  <div className="flex items-center gap-2">
+                    <LanguageSwitcher />
+                    {session && (
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="h-8"
+                        onClick={() => {
+                          logout();
+                          setMobileMenuOpen(false);
+                          navigate('/login', { replace: true });
+                        }}
+                      >
+                        <LogOut className="w-4 h-4" />
+                      </Button>
+                    )}
+                  </div>
                 </div>
                 
                 <div className="space-y-2">
@@ -118,10 +154,6 @@ export const Navigation = () => {
                     </NavLink>
                   ))}
                 </div>
-
-                <Button className="w-full rounded-xl bg-foreground text-white py-3 mt-3">
-                  {localized('Talk to Us', 'تواصل معنا')}
-                </Button>
               </div>
             </motion.div>
           )}
