@@ -66,6 +66,7 @@ const Login = () => {
             src={logo}
             alt="Arabian Mills Logo"
             className="h-14 sm:h-16 w-auto"
+            loading="lazy"
             decoding="async"
           />
         </div>
