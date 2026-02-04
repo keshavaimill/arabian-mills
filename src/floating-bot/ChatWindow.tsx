@@ -12,8 +12,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 
 interface ChatWindowProps {
   isOpen: boolean;
@@ -203,14 +201,10 @@ export const ChatWindow = ({ isOpen, onClose, variant = "floating" }: ChatWindow
                   ? "message-bubble-user text-primary-foreground"
                   : "message-bubble-assistant text-foreground"
               }`}
-            >
-              <ReactMarkdown
-                className="prose prose-xs sm:prose-sm max-w-none whitespace-pre-wrap break-words text-xs sm:text-sm"
-                remarkPlugins={[remarkGfm]}
-              >
+            > 
+              <p className="whitespace-pre-wrap break-words text-xs sm:text-sm">
                 {message.content}
-              </ReactMarkdown>
-
+              </p>
               <p className="text-[10px] sm:text-xs text-muted-foreground/70 mt-1.5 sm:mt-2">
                 {message.timestamp.toLocaleTimeString()}
               </p>
