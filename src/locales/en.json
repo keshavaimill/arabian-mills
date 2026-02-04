@@ -1,5 +1,12 @@
 {
   "hero_title": "Minimal, real-time command center for stock, demand & compliance intelligence.",
-  "hero_subtitle": "Monitor wheat imports, plant production readiness, SFDA requirements, and tactical savings in a single pane—built for executive calm and fast decision loops."
+  "hero_subtitle": "Monitor wheat imports, plant production readiness, SFDA requirements, and tactical savings in a single pane—built for executive calm and fast decision loops.",
+
+  "chat.title": "AI Operations Copilot",
+  "chat.subtitle": "Ask questions about inventory, demand, or compliance.",
+  "chat.startConversation": "Start a new conversation",
+  "chat.askAboutData": "Ask about your data, KPIs, or risks…",
+  "chat.processing": "Thinking on your data…",
+  "chat.placeholderResponse": "This is a demo response. Connect the backend to answer with real operational insights."
 }
 

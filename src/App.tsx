@@ -11,6 +11,8 @@ import NotFound from "./pages/NotFound";
 import { useTranslation } from "react-i18next";
 import Login from "./pages/Login";
 import { RequireAuth } from "@/components/RequireAuth";
+import Chat from "./pages/Chat";
+import { FloatingBot } from "./floating-bot/FloatingBot";
 
 const queryClient = new QueryClient();
 
@@ -53,9 +55,18 @@ const App = () => {
                 </RequireAuth>
               }
             />
+            <Route
+              path="/chat"
+              element={
+                <RequireAuth>
+                  <Chat />
+                </RequireAuth>
+              }
+            />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <FloatingBot />
         </BrowserRouter>
       </TooltipProvider>
     </QueryClientProvider>
