@@ -13,8 +13,70 @@ import Login from "./pages/Login";
 import { RequireAuth } from "@/components/RequireAuth";
 import Chat from "./pages/Chat";
 import { FloatingBot } from "./floating-bot/FloatingBot";
+import { ChatProvider } from "./floating-bot/ChatContext";
+
 
 const queryClient = new QueryClient();
+
+// const App = () => {
+//   const { i18n } = useTranslation();
+
+//   useEffect(() => {
+//     document.documentElement.dir = i18n.language === "ar" ? "rtl" : "ltr";
+//   }, [i18n.language]);
+
+//   return (
+//     <QueryClientProvider client={queryClient}>
+//       <TooltipProvider>
+//         <Toaster />
+//         <Sonner />
+//         <BrowserRouter>
+//           <Routes>
+//             <Route path="/login" element={<Login />} />
+//             <Route
+//               path="/"
+//               element={
+//                 <RequireAuth>
+//                   <Index />
+//                 </RequireAuth>
+//               }
+//             />
+//             <Route
+//               path="/materials"
+//               element={
+//                 <RequireAuth>
+//                   <RawMaterials />
+//                 </RequireAuth>
+//               }
+//             />
+//             <Route
+//               path="/finished-goods"
+//               element={
+//                 <RequireAuth>
+//                   <FinishedGoods />
+//                 </RequireAuth>
+//               }
+//             />
+//             <Route
+//               path="/chat"
+//               element={
+//                 <RequireAuth>
+//                   <Chat />
+//                 </RequireAuth>
+//               }
+//             />
+//             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+//             <Route path="*" element={<NotFound />} />
+//           </Routes>
+//           <FloatingBot />
+//         </BrowserRouter>
+//       </TooltipProvider>
+//     </QueryClientProvider>
+//   );
+// };
+
+// export default App;
+
 
 const App = () => {
   const { i18n } = useTranslation();
@@ -25,50 +87,53 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <Routes>
-            <Route path="/login" element={<Login />} />
-            <Route
-              path="/"
-              element={
-                <RequireAuth>
-                  <Index />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/materials"
-              element={
-                <RequireAuth>
-                  <RawMaterials />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/finished-goods"
-              element={
-                <RequireAuth>
-                  <FinishedGoods />
-                </RequireAuth>
-              }
-            />
-            <Route
-              path="/chat"
-              element={
-                <RequireAuth>
-                  <Chat />
-                </RequireAuth>
-              }
-            />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <FloatingBot />
-        </BrowserRouter>
-      </TooltipProvider>
+      <ChatProvider>
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route
+                path="/"
+                element={
+                  <RequireAuth>
+                    <Index />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/materials"
+                element={
+                  <RequireAuth>
+                    <RawMaterials />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/finished-goods"
+                element={
+                  <RequireAuth>
+                    <FinishedGoods />
+                  </RequireAuth>
+                }
+              />
+              <Route
+                path="/chat"
+                element={
+                  <RequireAuth>
+                    <Chat />
+                  </RequireAuth>
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+
+            {/* Floating bot MUST be inside ChatProvider */}
+            <FloatingBot />
+          </BrowserRouter>
+        </TooltipProvider>
+      </ChatProvider>
     </QueryClientProvider>
   );
 };

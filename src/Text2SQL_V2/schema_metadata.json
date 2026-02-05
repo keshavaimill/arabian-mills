@@ -1,0 +1,178 @@
+{
+  "global_rules": {
+    "sql_dialect": "sqlite",
+    "case_insensitive_matching": "SQLite does not support ILIKE. Always use LOWER(column) LIKE '%value%'",
+    "critical_warnings": [
+      "ONLY use tables and columns explicitly defined in the schema below",
+      "NEVER invent or guess column names, table names, or values",
+      "If a table or column is not listed, it does NOT exist"
+    ],
+    "anti_hallucination_rules": [
+      "Use ONLY provided tables",
+      "Use ONLY provided columns",
+      "If the user asks for unavailable data, say it is not present"
+    ]
+  },
+  "tables": {
+    "finished_goods_inventory": {
+      "description": "Current inventory status of finished goods (SKUs).",
+      "writable": false,
+      "columns": {
+        "sku_id": {
+          "type": "string",
+          "description": "Unique finished goods SKU identifier (e.g., FG-001)."
+        },
+        "sku_name": {
+          "type": "string",
+          "description": "Name of the finished goods product."
+        },
+        "category": {
+          "type": "string",
+          "description": "Product category (e.g., Bakery, Pasta)."
+        },
+        "current_stock_units": {
+          "type": "integer",
+          "description": "Current available stock in units."
+        },
+        "production_batch_id": {
+          "type": "string",
+          "description": "Last production batch identifier."
+        },
+        "last_produced_date": {
+          "type": "date",
+          "description": "Date on which the SKU was last produced."
+        }
+      }
+    },
+    "inventory_forecast": {
+      "description": "Material-level inventory forecast and stock health analysis.",
+      "writable": false,
+      "columns": {
+        "material_id": {
+          "type": "string",
+          "description": "Unique raw material identifier (e.g., RM-WHT-027)."
+        },
+        "material_name": {
+          "type": "string",
+          "description": "Name of the raw material."
+        },
+        "date": {
+          "type": "date",
+          "description": "Forecast reference date."
+        },
+        "implied_daily_avg": {
+          "type": "real",
+          "description": "Implied daily consumption average."
+        },
+        "historical_daily_avg": {
+          "type": "real",
+          "description": "Historical daily consumption average."
+        },
+        "deviation_ratio": {
+          "type": "real",
+          "description": "Ratio of implied to historical consumption."
+        },
+        "forecast_7d_kg": {
+          "type": "real",
+          "description": "Forecasted material demand for next 7 days (kg)."
+        },
+        "forecast_14d_kg": {
+          "type": "real",
+          "description": "Forecasted material demand for next 14 days (kg)."
+        },
+        "forecast_30d_kg": {
+          "type": "real",
+          "description": "Forecasted material demand for next 30 days (kg)."
+        },
+        "current_stock_kg": {
+          "type": "real",
+          "description": "Current available stock in kilograms."
+        },
+        "balance_7d": {
+          "type": "real",
+          "description": "Projected stock balance after 7 days."
+        },
+        "balance_14d": {
+          "type": "real",
+          "description": "Projected stock balance after 14 days."
+        },
+        "balance_30d": {
+          "type": "real",
+          "description": "Projected stock balance after 30 days."
+        },
+        "status": {
+          "type": "string",
+          "description": "Stock health status (e.g., CRITICAL: Stockout in 7d)."
+        }
+      }
+    },
+    "production_plan": {
+      "description": "Planned and actual production quantities for finished goods.",
+      "writable": false,
+      "columns": {
+        "plan_id": {
+          "type": "string",
+          "description": "Unique production plan identifier."
+        },
+        "sku_id": {
+          "type": "string",
+          "description": "Finished goods SKU identifier."
+        },
+        "planned_date": {
+          "type": "date",
+          "description": "Scheduled production date."
+        },
+        "planned_quantity": {
+          "type": "integer",
+          "description": "Quantity planned for production."
+        },
+        "actual_produced_quantity": {
+          "type": "integer",
+          "description": "Actual quantity produced."
+        },
+        "machine_id": {
+          "type": "string",
+          "description": "Production machine identifier."
+        }
+      }
+    },
+    "sales_history": {
+      "description": "Historical sales transactions for finished goods.",
+      "writable": false,
+      "columns": {
+        "sales_id": {
+          "type": "string",
+          "description": "Unique sales transaction identifier."
+        },
+        "date": {
+          "type": "date",
+          "description": "Date of the sales transaction."
+        },
+        "sku_id": {
+          "type": "string",
+          "description": "Finished goods SKU sold."
+        },
+        "region": {
+          "type": "string",
+          "description": "Sales region."
+        },
+        "distributor_id": {
+          "type": "string",
+          "description": "Distributor identifier."
+        },
+        "quantity_sold": {
+          "type": "integer",
+          "description": "Number of units sold."
+        },
+        "price_per_unit": {
+          "type": "real",
+          "description": "Selling price per unit."
+        },
+        "promotion_flag": {
+          "type": "boolean",
+          "description": "Indicates whether the sale was under promotion."
+        }
+      }
+    }
+  }
+}

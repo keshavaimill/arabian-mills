@@ -23,3 +23,35 @@ dist-ssr
 *.sln
 *.sw?
 
+
+# =========================
+# Environment variables
+# =========================
+.env
+.env.*
+**/.env
+**/.env.*
+
+# =========================
+# Python cache / bytecode
+# =========================
+__pycache__/
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# =========================
+# Python virtual env (if any)
+# =========================
+venv/
+.venv/
+**/venv/
+**/.venv/
+
+# =========================
+# Local databases
+# =========================
+*.db
+
+
